@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<!--
+	Home Page/About
+-->
+<html>
+	<head>
+		<title>Aidan DeLorenzo Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Aidan DeLorenzo</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">About</a></li>
+							<li class = "active"><a href="generic.html">Projects</a></li>
+							
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/aidan-delorenzo-084748373/" class="icon brands alt fa-linkedin" target="_blank" rel="noopener"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/aidan-delorenzo/aidan-delorenzo.github.io" class="icon brands alt fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h2>Ecological Mapping of the Cornwall Swamp
+									</h2>
+								</header>
+
+								<!-- Text stuff -->
+								 	<h2>Cornwall Swamp</h2>
+									<p><a class = "image left shadowbox hover-zoom" href="images/Cornwall Swamp Map.png"><img src="images/Cornwall Swamp Map.png" alt="Cornwall Swamp"></a>
+										The Cornwall Swamp is in central Vermont in the Otter Creek watershed and is the largest wetland complex in the state. Its predominant forest canopy is white cedar, red maple, silver maple, and green ash. The swamp is seasonally flooded, and provides crucial ecosystem services for the area by dampening the severity of flooding events. During high water, the swamp obsorbs water throughout the extensive wetland area; this water is then released slowly over the course of multiple days preventing the down stream river from peaking too high at any one point.</p>
+									<p>This project was in collaboration with the Lemon Fair Insect Control District (LFICD) which is responsible for mosquito and other pest control in the towns of Bridgeport, Weybridge, and Cornwall. The Cornwall Swamp is of particular concern for the LFICD because of it's potential for mosquito breeding habitat and proximity to residential areas. The goal of this project was to map the ecological characteristics and hydrological processes of the Cornwall Swamp to identify priority mosquito abatement areas. Mosquitos can bread anywhere there is still or slow moving water, so much of this task boils down to finding these places were water collects.</p>
+									<h2>Analysis</h2>
+									<p><a href = 'images/Terrain Ruggedness Index.png' class = 'image left hover-zoom shadow'><img src="images/Terrain Ruggedness Index.png"></a>
+									First, to try to identify likely places where water would pool and serve as mosquito breeding territory, I used a digital elevation model to calculate topographic roughness index which uses a formula to quantify how quickly the slope changes from one place to the next. A high roughness index means that the slope is going from flat to steep very quickly, and so there are likely hummucks where water can pool.
+									The map to the left shows that much of the area of the swamp has a consitent speckled pattern of roughness. This was confirmed with ground checks to represent hummucks. Although the map is fairly consitent, the western portion of the swamp seem to have slightly higher roughness index values. This map was made with state lidar imagery which is at a resolution of 35cm per pixel; this is quite good for publicly available data, but mosquito breeding sites can be so small that the resolution still was not sufficient for this project. 
+									<br></p>
+									<p><a href = 'images/Supervised_Cassificaiton.png' class = 'image right hover-zoom shadowbox' ><img src="images/Supervised_Cassificaiton.png"></a>
+									To move forward with the analysis we decided to do a couple of drone flights to collect higher quality imagery. We also decided to focus on the fields at the edge of the swamp because much of the interior of the swamp is very consistent, but the edges have more variable conditions and also have human impacts such as ruts and tire tracks that often form ideal mosquito breeding habitat.
+									The figure to the right shows the results of a supervised classification of the drone imagery conducted in ArcGIS Pro. This reveals old farm ditches in this area that have become slow moving streams or linear puddles crowded with duck weed. These would make potential mosquito breeding habitat.
+									<br><br><br></p>
+									<p>To further understand these old farm ditches, I looked at historic satellite imagery of the area and created the map bellow. In this map you can see how over the decades ditching became a wide spread practice on farm fields which persist today even after the fields have been abandonded. These provide lots of mosquito breeding habitat.</p>
+									<a href = 'images/Cornwall_Historic.png' class = 'image fit hover-zoom shadowbox' ><img src="images/Cornwall_Historic.png"></a>
+									<p>Finally, we also conducted a drone flight on the west side of the swamp on active agricultural fields. These still form linear topographic features, but these do not collect much water as the entire field is sloped from west to east draining into the swamp.</p>
+									<a href = 'images/Drone_Imagery_Analysis.png' class = 'image fit hover-zoom shadowbox' ><img src="images/Drone_Imagery_Analysis.png"></a>
+									
+
+									<hr>
+									<!--More Projects Button (takes you back to projects page)-->
+									<ul class="actions">
+										<li><a href="generic.html" class="button primary">More Projects</a></li>
+									</ul>
+							</section>
+			</div>
+			<!--footer with contact info-->			
+			<footer id="footer">				
+				<section>					
+					<h4 >Email</h4>
+					<p><a href="mailto:aidansoldelorenzo@gmail.com">aidansoldelorenzo@gmail.com</a></p>					
+				</section>			
+				<section>
+					<h4 style="text-align: center;"> Socials</h4>
+					<ul class="icons alt" >
+						<li><a href="https://www.linkedin.com/in/aidan-delorenzo-084748373/" class="icon brands alt fa-linkedin" target="_blank" rel="noopener"><span class="label">LinkedIn</span></a></li>
+						<li><a href="https://github.com/aidan-delorenzo/aidan-delorenzo.github.io" class="icon brands alt fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+					</ul>
+				</section>
+				<section>
+					<h4 style="text-align: right;">Location</h4>
+					<p style="text-align: right;">Shelburne, Massachusetts</p>
+				</section>
+											
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

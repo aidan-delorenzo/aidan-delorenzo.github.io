@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+<!--
+	Statistical Clustering Project
+-->
+<html>
+	<head>
+		<title>Aidan DeLorenzo Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Aidan DeLorenzo</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">About</a></li>
+							<li class = "active"><a href="generic.html">Projects</a></li>
+							
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/aidan-delorenzo-084748373/" class="icon brands alt fa-linkedin" target="_blank" rel="noopener"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/aidan-delorenzo/aidan-delorenzo.github.io" class="icon brands alt fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h2>Statistical Clustering of Vegetation Cover Data
+									</h2>
+								</header>
+
+								<!-- Text stuff -->
+								 	<h2>Introduction</h2>
+									<p>
+										In 2024 a group of researchers collected data on the vegetative cover of 28 sample frames across the Craters of the Moon National Monument and Preserve. In this project I work with this data to group the sample frames into ecologically similar groups based on their species composition and physical geography.
+										Assessing the similarity of specie composition between different locations in an ecosystem is important for understanding the extent of ecoregions and can decrease the resources required for field surveys over time. 
+										<br>Craters of the Moon is located in Idaho and is ecologically unique because of its volcanic features. Much of the preserve is covered in recent lava flows. This creates distinctly vegetated areas. Some areas are recovering from destructive lava flows while other have been undisturbed by the volcanic activity. Still other areas have been surrounded by lava flows and cut off from the rest of the ecosystem. These islands of vegetation surrounded by lava flows are call Kipukas and represent areas of particular interest to conservation becuase they have been isolated and sheltered from grazing animals. 									
+										<br><a href = "images/Craters Map.png" class = 'image left hover-zoom shadowbox'><img src="images/Craters Map.png" alt="Map of Craters of the Moon National Park"></img></a>
+										The data I use in this project was collected for a <a href = "https://www.researchgate.net/publication/382822322_Clustering_and_unconstrained_ordination_with_Dirichlet_process_mixture_models" target="_blank" rel="noopener noreferrer">study by Christian Stratton et al.</a> in which researchers selected 28 sample frames that represented Craters of the Moon's diverse sub eco-regions.
+										Within each of these 10-hectare sample frames, they collected data from about 50 sample locations by assessing the visual cover of all present species within a 1m by 1m quadrat. Specifically, they assessed the proportion of the quadrat covered by the plant, and then mapped these percentages to the Daubenmire scale which ranges from 0 to 6 as defined by the table below. 
+									<br><br><br><br><hr>
+									</p>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Daubenmire Value</th>
+													<th>% Vegetative Cover</th>
+													<th>Mid Point</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>0</td>
+													<td>0%</td>
+													<td>0%</td>
+												</tr>
+												<tr>
+													<td>1</td>
+													<td>0-5%</td>
+													<td>2.5%</td>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>5-25%</td>
+													<td>15%</td>
+												</tr>
+												<tr>
+													<td>3</td>
+													<td>25-50%</td>
+													<td>37.5%</td>
+												</tr>
+												<tr>
+													<td>4</td>
+													<td>50-75%</td>
+													<td>62.5%</td>
+												</tr>
+												<tr>
+													<td>5</td>
+													<td>75-95%</td>
+													<td>85%</td>
+												</tr>
+												<tr>
+													<td>6</td>
+													<td>95-100%</td>
+													<td>97.5%</td>
+												</tr>
+											</tbody>
+											
+										</table>
+									</div>
+									<h2>Data Preprocessing</h2>
+									<p>The data I started with was structured so that each species was a different column, resulting in a very high-dimensional data set. This posed a problem because most clustering algorithms struggle with high-dimensional data, so I took some steps to simplify the data set. First, I removed rare species from my analysis. Many of the species only show up a handful of times in the study. Because of this, I decided to remove any species that appeared fewer than 10 times. This removed 23 species that showed up so little that they likely could not significantly impact sample frame groupings.
+										<br>I further manipulated that data by converting the Daubenmire value back to percentages. I estimated each value as the mid-point percentage of each Daubenmire range. I did this so that I could average the sample locations by sample frame without skewing that data, and this was necessary because I wanted the groupings on the scale of the sample frame. Finally, I further decreased the number of dimensions by conducting a Principal Component Analysis (PCA).
+									</p>
+									<h2>Methods</h2>
+									<h3>Principal Component Analysis</h3>
+									<p>
+										<a href = 'images/scree_plot.png' class = 'image left hover-zoom shadow'><img src = 'images/scree_plot.png' alt = 'Scree Plot'></img></a>
+										The Principal Component Analysis was used to reduce the dimensionality of the data while retaining as much variance as possible. I included the kipuka column as a binary variable in the PCA. Eventhough PCA is not designed for categorical variables, it is better to include it from the start because if I added it in afterwards it might be overly influential on groupings. The scree plot to the left illustrates the varience explained by each of the new principal components, helping to determine the optimal number of components to retain. I decided to use the first three principal components in the rest of my analysis because they explain 43.9% of the variance and subsequent components explain significantly less variance.
+										<br><a href = 'images/PCA Initial.png' class = 'image right hover-zoom shadow'><img src = 'images/PCA Initial.png' alt = 'PCA Initial Results'></img></a>
+										A visualization of the first and second principal components are shown to the right. From this graph I concluded that there are likely outliers to any grouping scheme I create. The point in the top right is far from any other points, and so it is going to be important to select a clustering method that is not sensitive to outliers. I also spent a little while trying to interpret the loadings of the principal components; however, because there are so many are so many different variables in the data set, it was impossible to come to any meaningful conclusions. Fortunately it is not actually important to know what the principal components represent because I am just using them as a way to reduce the dimensions so that the clustering functions work better. Once I have my groups, I'll describe them with the original vegetative cover variables. 
+									</p>
+									<h3>Clustering</h3>
+									<p>
+										Now that I had my data set reduced down to three variablres, I moved onto classifying the sample frames. Again, I wanted a clustering algorithm that was not distorted by outliers, so I tried density-based clustering and then a Gaussian mixture model. After some experimentation and visual assesment, I decided that the Gaussian mixture model was performing better. I used the Mclust function out of the mclust package in R to implement this clustering method. I included a noise argument into the function for sample frame 25 which is the point in the top right of the plot above. This gives the Mclust function a starting point for trying to assess which data points are noise and shouldn't be included into any group. The results of the clustering are visualized by principal component in the plot below. The points are colored by their assigned group; the points that are assigned to group zero are considered noise or outliers.
+									</p>
+									<a href = 'images/Grouping_plots.png' class = 'image fit hover-zoom'><img src = 'images/Grouping_plots.png' alt = 'PCA Initial Results'></img></a>
+									<p>Visually these grouping seem pretty good, and this is supported by the calculated uncertainty which represents the probability that each sample frame actually belongs to a different group than the one assigned. The point with the highest uncertainty was only 12%, and the rest of the points had uncertainty of under 2%.</p>
+									
+									<h2>Analysis and Results</h2>
+									<p><a href = 'images/grouping_map.png' class = 'image left hover-zoom shadow'><img src = 'images/grouping_map.png' alt = 'Grouping Map'></img></a>
+										In physical space, those groupings map to sample locations across Craters of the Moon as shown in the figure to the left.						
+										To determine what these groups meant in terms of species composition and physical geography, I averaged all of the descriptive variables across each group so that I could compare the three groups to each other. The predominant species make up of each group is shown below.
+									</p>
+									<a href = 'images/Group Species Plot.png' class = 'image fit hover-zoom'><img src = 'images/Group Species Plot.png' alt = 'Group Species Make up'></img></a>
+									<p>
+										The graphs above show the six most common species in each group of sample frames. The vegetative cover values are doubley averaged; first, they are averaged across the individual quadrats of each sample frame, then they are averaged across the grouping I created. There are some species like Artemisia tridentata that are common in all groups; this simply means this species is common across the entire Craters of the Moon National Monument, so the more informative species are the ones that are only present in one or two of the groups. 
+										From this you can infer that group one is characterized by Elymus lanceolatus, Eriogonum, and Purshia tridentata. Group two on the other hand is defined mainly as the only group that has Leptodactylon pungens. Group three is characterized by an overwhelming abundance of Bromus tectorum and also the precense of Artemisia tripartita and Sisymbrium altissimum. 
+										<a href = 'images/Slope Plot.png' class = 'image fit hover-zoom'><img src = 'images/Slope Plot.png' alt = 'Slope Plot'></img></a>
+										As far as physical geography of the groups, group one tends toward higher elevation areas with steeper slopes. Group two and three have similar characteristics, but group three was entirely on Kipukas and the only other Kipuka sites were assigned as noise.
+									</p>
+									
+									
+									
+									
+									<!--More Projects Button (takes you back to projects page)-->
+									<hr>
+									<ul class="actions">
+										<li><a href="generic.html" class="button primary">More Projects</a></li>
+									</ul>
+							</section>
+			</div>
+			<!--footer with contact info-->			
+			<footer id="footer">				
+				<section>					
+					<h4 >Email</h4>
+					<p><a href="mailto:aidansoldelorenzo@gmail.com">aidansoldelorenzo@gmail.com</a></p>					
+				</section>			
+				<section>
+					<h4 style="text-align: center;"> Socials</h4>
+					<ul class="icons alt" >
+						<li><a href="https://www.linkedin.com/in/aidan-delorenzo-084748373/" class="icon brands alt fa-linkedin" target="_blank" rel="noopener"><span class="label">LinkedIn</span></a></li>
+						<li><a href="https://github.com/aidan-delorenzo/aidan-delorenzo.github.io" class="icon brands alt fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+					</ul>
+				</section>
+				<section>
+					<h4 style="text-align: right;">Location</h4>
+					<p style="text-align: right;">Shelburne, Massachusetts</p>
+				</section>
+											
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

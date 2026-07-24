@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<!--
+	Home Page/About
+-->
+<html>
+	<head>
+		<title>Aidan DeLorenzo Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Aidan DeLorenzo</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">About</a></li>
+							<li class = "active"><a href="generic.html">Projects</a></li>
+							
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/aidan-delorenzo-084748373/" class="icon brands alt fa-linkedin" target="_blank" rel="noopener"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/aidan-delorenzo/aidan-delorenzo.github.io" class="icon brands alt fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h2>Habitat Connectivity Mapping
+									</h2>
+								</header>
+
+								<!-- Text stuff -->
+								 	<h2>What is Habitat Connectivity?</h2>
+									<p>
+										Habitat connectivity is the measure of how easily wildlife can move between wilderness area. It is important because it increases wildlife access to habitat, even when it is not possible to increase protected land. This has significant consiquences for biodiversity, species persistance in an area, and facilitating genetic exchange between species subpopulations.
+										In this project, I map and analyze the habitat connectivity for Bobcats moving from the Adirondacks to the Green or Taconic Mountains. 
+									</p>
+									<h3>Study Area</h3>
+									<p><a href = "images/locator map3.png" class="image shadowbox left"><img src="images/locator map3.png" alt="" /></a>
+										The Green/Taconic Mountains and the Adirondacks are both part of their own large scale wilderness areas, but between them are a lot of barriers for wildlife movement. Lake Champlain stretches down through most of Vermont, and then past that there is Lake George, Great Sacandaga Lake, and a series of dense urban areas. Given these barriers, I wanted to identify the paths wildlife would most likely be taking between these two areas and simultaniously identify the places where habitat expansion and resoration would be most value for connectivity.</p>
+									<br>
+									<h3>Study Species</h3>									
+									<p><span class="image right shadowbox"><img src="images/bobcat.jpg" alt="" /></span>
+										Habitat connectivity is species dependent: a bird might easily move between habitat areas when terrestial animals don't. So for this study, I decided to focus on Bobcats (Lynx rufus) because they are representative of a lot of medium sized predators in the North East. Additionaly, they go through dispersal events when juvaniles leave their maternal home ranges and go out to find their own unclaimed territory. During these dispersal events they can regularly travel up to 200 miles which means that they often need to move from one protected wilderness area to another.</p>
+									<hr />
+									<h2>Methods</h2>
+									<p><a href = "images\Cost Surface Workflow4.png" class = "image right shadowbox hover-zoom"><img src = "images\Cost Surface Workflow4.png"/></a>
+										To answer the question of where Bobcats are most likely to travel between the Adirondacks and the Green/Taconic Mountains, I created a cost surface model of the entire study area and then conducted a least cost path analysis. The general work flow can be seen to the right.
+										<br>The cost surface model is a replication of the expert opinion model created by <a href="https://doi.org/10.1111/acv.12325" target="_blank" rel="noopener">Reed et al. (2017)</a> with adjustment made from a literature review. The four main inputs are land cover, road lines, elevation, and stream lines. These were processed and then rescaled from 0 to 10 where 0 represents areas where Bobcats can easily move, and 10 represents the most difficult terrain for Bobcats to navigate. These four layers were then combined with a weighted sum to produce the final cost surface. These operations were strung to gether using the model builder in QGIS so that I could edit parameters as needed.
+										<br>The final cost surface consisted of a 10m x 10m raster layer with values ranging from 0 to 10. With this landscape model I could then use a least cost path algorithm to find the paths that had the smallest cummulative cost of moving, either direction, from a point in the Adirondack Park to a selection of points in the Green/Taconic Mountains that were all equidistant from that point in the Adirondacks.
+									</p>
+									<hr />
+									<h2>Results</h2>
+									<a href = "images\Corridor_Analysis_Layout5.png" class = "image main shadowbox hover-zoom"><img src = "images\Corridor_Analysis_Layout5.png"/></a>
+									<p>
+									The least cost path analysis revealed the most likely corridors for Bobcat movement between the Adirondacks and the Green Mountains. The analysis highlighted two choke points where wildlife movment is likely funneled: between Lake George and Glens Falls and between Glens Falls and Saratoga Springs. These are likely areas where there are is a higher concentration of Bobcats, and thus these areas should be high priority for protecting wildernes areas and expanding usable habitat.
+									<hr/>To futher investigate the characteristics of the least cost path, I analyzed the existing conservation areas along the corridor and the land cover of a 1 mile buffer of the least cost path.
+									</p>
+									<div class="row gtr-50 gtr-uniform">
+											<div class="col-6"><a href = "images\LCP_Conservation_Analysis_Layout2.jpg" class = "image fit shadowbox"><img src="images\LCP_Conservation_Analysis_Layout2.jpg" alt="" /></a></div>
+											<div class="col-6"><a href = "images\LCP_Land_Cover5.png" class="image fit shadowbox"><img src="images\LCP_Land_Cover5.png" alt="" /></a></div>
+									</div>
+									<p>
+									<br>The least cost path travels from between Glens Falls and Saratoga Springs. Outside of the Adirondack park, only about 9% of the buffered area is conserved. Increasing habitat and protected area in this corridor should be a high priority as it will have the most impact on increasing regional scale habitat connectivity. Additionally, this analysis reveals the need for planners to consider wildlife crossings of Interstate 87 which goes north/south between Glens Falls and Saratoga Springs. This might be done through the construction of overpasses, underpasses or critter shelves in culverts to allow safe passage for wildlife.
+									</p>
+									<hr />
+								<!--More Projects Button (takes you back to projects page)-->
+									<ul class="actions">
+										<li><a href="generic.html" class="button primary">More Projects</a></li>
+									</ul>
+							</section>
+			</div>
+			<!--footer with contact info-->			
+			<footer id="footer">				
+				<section>					
+					<h4 >Email</h4>
+					<p><a href="mailto:aidansoldelorenzo@gmail.com">aidansoldelorenzo@gmail.com</a></p>					
+				</section>			
+				<section>
+					<h4 style="text-align: center;"> Socials</h4>
+					<ul class="icons alt" >
+						<li><a href="https://www.linkedin.com/in/aidan-delorenzo-084748373/" class="icon brands alt fa-linkedin" target="_blank" rel="noopener"><span class="label">LinkedIn</span></a></li>
+						<li><a href="https://github.com/aidan-delorenzo/aidan-delorenzo.github.io" class="icon brands alt fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+					</ul>
+				</section>
+				<section>
+					<h4 style="text-align: right;">Location</h4>
+					<p style="text-align: right;">Shelburne, Massachusetts</p>
+				</section>
+											
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
